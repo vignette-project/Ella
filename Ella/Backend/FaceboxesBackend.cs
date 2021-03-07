@@ -1,35 +1,44 @@
 ﻿// Copyright 2020 - 2021 Vignette Project
 // Licensed under MIT. See LICENSE for details.
-
 using System;
-using System.Collections.Generic;
-using System.IO;
 using Microsoft.ML;
 
 namespace Ella.Backend
 {
     internal class FaceboxesBackend
     {
-
-        internal readonly string AssetsPath = @"../Model/";
-        internal readonly string ModelFileName = @"FaceBoxesProd.onnx";
+        private string modelPath;
         private readonly MLContext mlContext;
-        private IList<string> faceboxesBoundingBoxes;
 
-        private ITransformer loadModel (string modelPath)
+        public FaceboxesBackend (string path)
         {
-#if DEBUG
-            Console.WriteLine($"loading model: {modelPath}");
-#endif
+            modelPath = path;
+        }
+
+        /// <summary>
+        /// Loads the model and returns a <see cref="ITransformer"/> Pipeline.
+        /// </summary>
+        internal ITransformer GetPredictionPipeline()
+        {
             try
             {
-                var fileStream = File.OpenRead($"{AssetsPath}/{ModelFileName}");
-                var model = mlContext.Model.Load(fileStream, Structures.OnnxInput.FaceBox);
+                // TODO: add directives to use DirectML for Windows, and GPU/CPU for Linux/macOS.
+                var predictionPipeline = mlContext.Transforms.ApplyOnnxModel(modelPath);
+                var emptyDv = mlContext.Data.LoadFromEnumerable(Array.Empty<Structures.OnnxInput.FaceBox>());
+
+                return predictionPipeline.Fit(emptyDv);
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.Message);
+                // either something fucked up or I fucked up, so throw the Exception.
+                throw;
             }
+        }
+
+        public void Predict()
+        {
+            // TODO: figure out how to split the output of the prediction to Structures.FaceBox. If we figure it out here, it should work the same in TDDFAv2.
+            var predictionEngine = mlContext.Model.CreatePredictionEngine<Structures.OnnxInput.FaceBox, Structures.OnnxOutput.FaceBox>(GetPredictionPipeline());
         }
     }
 }
