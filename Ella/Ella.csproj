@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -10,11 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
+    <PackageReference Include="Microsoft.ML" Version="1.5.5" />
+    <PackageReference Include="OpenCvSharp4" Version="4.5.1.20210208" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenCvSharp4" Version="4.5.1.20210208" />
+    <Folder Include="Model\" />
   </ItemGroup>
 
 </Project>
