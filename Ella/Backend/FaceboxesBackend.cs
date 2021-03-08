@@ -1,18 +1,28 @@
 ﻿// Copyright 2020 - 2021 Vignette Project
 // Licensed under MIT. See LICENSE for details.
 using System;
+using System.Drawing;
 using Microsoft.ML;
 
 namespace Ella.Backend
 {
+    /// <summary>
+    /// Backend for detecting faces. Based from the code from FaceBoxes.PyTorch.
+    /// </summary>
     internal class FaceboxesBackend
     {
         private string modelPath;
-        private readonly MLContext mlContext;
+        private MLContext mlContext;
 
-        public FaceboxesBackend (string path)
+        /// <summary>
+        /// Instantiates a new FaceboxesBackend instance.
+        /// </summary>
+        /// <param name="path">Path to the Faceboxes model.</param>
+        /// <param name="mLContext">the ML Context for Faceboxes.</param>
+        public FaceboxesBackend (string path, MLContext mLContext)
         {
             modelPath = path;
+            mlContext = mLContext;
         }
 
         /// <summary>
@@ -35,7 +45,10 @@ namespace Ella.Backend
             }
         }
 
-        public float[] Predict(float[] input)
+        /// <summary>
+        /// Get Prediction Data and return a <see cref="Structures.OnnxInput.FaceBox"/> Output.
+        /// </summary>
+        public float[] Predict(Bitmap input)
         {
             var predictionEngine = mlContext.Model.CreatePredictionEngine<Structures.OnnxInput.FaceBox, Structures.OnnxOutput.FaceBox>(GetPredictionPipeline());
             var faceboxInput = new Structures.OnnxInput.FaceBox { Input = input };
@@ -45,7 +58,10 @@ namespace Ella.Backend
             return prediction.Output;
         }
 
-        public float[] PredictLabels(float[] input)
+        /// <summary>
+        /// Predict labels from input and return a <see cref="Structures.OnnxInput.FaceBox"/> Output from the 353 output layer.
+        /// </summary>
+        public float[] PredictLabels(Bitmap input)
         {
             var predictionEngine = mlContext.Model.CreatePredictionEngine<Structures.OnnxInput.FaceBox, Structures.OnnxOutput.FaceBox>(GetPredictionPipeline());
             var faceboxInput = new Structures.OnnxInput.FaceBox { Input = input };
