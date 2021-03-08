@@ -7,6 +7,9 @@ namespace Ella.Structures.OnnxOutput
     public class FaceBox
     {
         [ColumnName("output")]
-        public float Output;
+        public float[] Output;
+
+        [ColumnName("353")]
+        public float[] Labels;
     }
 }

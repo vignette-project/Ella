@@ -35,15 +35,24 @@ namespace Ella.Backend
             }
         }
 
-        public float Predict(float input)
+        public float[] Predict(float[] input)
         {
-            // TODO: figure out how to split the output of the prediction to Structures.FaceBox. If we figure it out here, it should work the same in TDDFAv2.
             var predictionEngine = mlContext.Model.CreatePredictionEngine<Structures.OnnxInput.FaceBox, Structures.OnnxOutput.FaceBox>(GetPredictionPipeline());
             var faceboxInput = new Structures.OnnxInput.FaceBox { Input = input };
 
             var prediction = predictionEngine.Predict(faceboxInput);
 
             return prediction.Output;
+        }
+
+        public float[] PredictLabels(float[] input)
+        {
+            var predictionEngine = mlContext.Model.CreatePredictionEngine<Structures.OnnxInput.FaceBox, Structures.OnnxOutput.FaceBox>(GetPredictionPipeline());
+            var faceboxInput = new Structures.OnnxInput.FaceBox { Input = input };
+
+            var prediction = predictionEngine.Predict(faceboxInput);
+
+            return prediction.Labels;
         }
     }
 }

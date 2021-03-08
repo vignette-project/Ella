@@ -7,6 +7,6 @@ namespace Ella.Structures.OnnxInput
     public class FaceBox
     {
         [ColumnName("input")]
-        public float Input;
+        public float[] Input;
     }
 }
