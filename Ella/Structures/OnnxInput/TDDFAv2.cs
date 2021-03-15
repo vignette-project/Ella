@@ -7,6 +7,6 @@ namespace Ella.Structures.OnnxInput
     public class TDDFAv2
     {
         [ColumnName("input")]
-        public float Input;
+        public float[] Input;
     }
 }

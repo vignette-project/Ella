@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.ML.Data;
-
+﻿// Copyright 2020 - 2021 Vignette Project
+// Licensed under MIT. See LICENSE for details.
 namespace Ella.Structures
 {
     /// <summary>

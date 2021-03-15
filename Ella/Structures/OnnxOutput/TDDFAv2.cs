@@ -7,6 +7,6 @@ namespace Ella.Structures.OnnxOutput
     public class TDDFAv2
     {
         [ColumnName("output")]
-        public float Output;
+        public float[] Output;
     }
 }

@@ -10,17 +10,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution FIles", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ella.Tests", "Ella.Tests\Ella.Tests.csproj", "{00D5986F-1E73-4A70-B951-02152D8801F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ella.Tests", "Ella.Tests\Ella.Tests.csproj", "{00D5986F-1E73-4A70-B951-02152D8801F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ella", "Ella\Ella.csproj", "{30703ED8-52E0-445A-BAC4-97EF9F760B7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ella", "Ella\Ella.csproj", "{30703ED8-52E0-445A-BAC4-97EF9F760B7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{239DBCDC-E589-45D6-B6BE-97C8088634E8}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3A2369FC-9CCC-41D9-BA3F-9F467E48C6C7}
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -54,5 +53,11 @@ Global
 		{30703ED8-52E0-445A-BAC4-97EF9F760B7F}.Release|x64.Build.0 = Release|Any CPU
 		{30703ED8-52E0-445A-BAC4-97EF9F760B7F}.Release|x86.ActiveCfg = Release|Any CPU
 		{30703ED8-52E0-445A-BAC4-97EF9F760B7F}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A2369FC-9CCC-41D9-BA3F-9F467E48C6C7}
 	EndGlobalSection
 EndGlobal

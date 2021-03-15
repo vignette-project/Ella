@@ -1,7 +1,6 @@
 ﻿// Copyright 2020 - 2021 Vignette Project
 // Licensed under MIT. See LICENSE for details.
 using System;
-using System.Drawing;
 using Microsoft.ML;
 
 namespace Ella.Backend
@@ -48,7 +47,7 @@ namespace Ella.Backend
         /// <summary>
         /// Get Prediction Data and return a <see cref="Structures.OnnxInput.FaceBox"/> Output.
         /// </summary>
-        public float[] Predict(Bitmap input)
+        public float[] Predict(float[] input)
         {
             var predictionEngine = mlContext.Model.CreatePredictionEngine<Structures.OnnxInput.FaceBox, Structures.OnnxOutput.FaceBox>(GetPredictionPipeline());
             var faceboxInput = new Structures.OnnxInput.FaceBox { Input = input };
@@ -61,7 +60,7 @@ namespace Ella.Backend
         /// <summary>
         /// Predict labels from input and return a <see cref="Structures.OnnxInput.FaceBox"/> Output from the 353 output layer.
         /// </summary>
-        public float[] PredictLabels(Bitmap input)
+        public float[] PredictLabels(float[] input)
         {
             var predictionEngine = mlContext.Model.CreatePredictionEngine<Structures.OnnxInput.FaceBox, Structures.OnnxOutput.FaceBox>(GetPredictionPipeline());
             var faceboxInput = new Structures.OnnxInput.FaceBox { Input = input };
