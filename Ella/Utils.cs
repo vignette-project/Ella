@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Ella
 {
@@ -14,13 +15,19 @@ namespace Ella
             using var ms = new MemoryStream();
             image.Save(ms, ImageFormat.Bmp);
 
-            ms.Seek(0, SeekOrigin.Begin);
+ 
             var bytes = ms.ToArray();
+
+            // We don't want too much allocations so we dispose it immediately after using it.
+            image.Dispose();
 
             // convert MemoryStream to float array.
             // https://stackoverflow.com/questions/4635769/how-do-i-convert-an-array-of-floats-to-a-byte-and-back
             var floatArray = new float[bytes.Length / 4];
-            Buffer.BlockCopy(bytes, 0, floatArray, 0, bytes.Length);
+
+            // kudos to KoziLord for this
+            // we don't need to copy memory anymore, we just do it in the same allocation space for the MemoryStream which saves us time.
+            ms.Read(MemoryMarshal.AsBytes(floatArray.AsSpan()));
 
             return floatArray;
         }
