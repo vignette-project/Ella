@@ -18,9 +18,6 @@ namespace Ella
  
             var bytes = ms.ToArray();
 
-            // We don't want too much allocations so we dispose it immediately after using it.
-            image.Dispose();
-
             // convert MemoryStream to float array.
             // https://stackoverflow.com/questions/4635769/how-do-i-convert-an-array-of-floats-to-a-byte-and-back
             var floatArray = new float[bytes.Length / 4];
