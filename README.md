@@ -8,7 +8,7 @@ The port focuses mostly on porting the inference pipeline and does not include t
 
 We already supply the prebuild ONNX models for Faceboxes and our TDDFA model, however if you wish to train your own TDDFA model, we have subtreed the original TDDFAv2 repository.
 
-Consult the `TDDFAv2` directory for build instructions.
+Consult the `3DDFAv2` directory for build instructions.
 
 ## Running Tests
 
@@ -23,3 +23,9 @@ $ dotnet run Ella.Tests
 ## Reminder
 
 Keep in mind most of the code here is work in progress. Do not use it for production purposes.
+
+## Credits (where it's due!)
+
+The following C# code is Copyright &copy; 2021 Ayane Satomi and the Vignette Authors. Licensed under Apache 2.0 License.
+
+the 3DDFA code is Copyright &copy; Jianzhu Guo, licensed under MIT. 
